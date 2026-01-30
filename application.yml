@@ -11,3 +11,13 @@ management:
     web:
       exposure:
         include: health,info,refresh
+
+  tracing:
+    sampling:
+      probability: ${TRACING_PROBABILITY:1.0}
+
+  otlp:
+    tracing:
+      enabled: ${OTLP_ENABLED:true}
+      endpoint: ${OTLP_ENDPOINT:http://localhost:4318/v1/traces}
+
