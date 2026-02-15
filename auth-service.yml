@@ -1,0 +1,35 @@
+server:
+  port: ${PORT:8081}
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY}
+
+spring:
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/users}
+    username: ${DATASOURCE_USERNAME:postgres}
+    password: ${DATASOURCE_PASSWORD:1}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: ${JPA_SHOW_SQL:true}
+    properties:
+      hibernate:
+        format_sql: ${JPA_FORMAT_SQL:true}
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  liquibase:
+    enabled: ${LIQUIBASE_ENABLED:true}
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+access-token:
+  ttl: ${ACCESS_TOKEN_TTL:1440}  # minutes
+
+refresh-token:
+  ttl: ${REFRESH_TOKEN_TTL:30}   # days
